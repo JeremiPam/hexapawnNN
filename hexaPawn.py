@@ -24,6 +24,24 @@ class Board():
         self.outputIndex['(4,7)'] =10
         self.outputIndex['(5,8)'] =11
 
+        self.outputIndex['(6,4)']=12
+        self.outputIndex['(7,3)'] =13
+        self.outputIndex['(7,5)'] =14
+        self.outputIndex['(8,4)'] =15
+        self.outputIndex['(3,1)'] =16
+        self.outputIndex['(4,0)'] =17
+        self.outputIndex['(4,2)'] =18
+        self.outputIndex['(5,1)'] =19
+
+        self.outputIndex['(0,4)'] =20
+        self.outputIndex['(1,3)'] =21
+        self.outputIndex['(1,5)'] =22
+        self.outputIndex['(2,4)'] =23
+        self.outputIndex['(3,7)'] =24
+        self.outputIndex['(4,6)'] =25
+        self.outputIndex['(4,8)'] =26
+        self.outputIndex['(5,7)'] =27
+
         self.whiteCaptures={
             3:[1],
             4:[0,2],
@@ -40,6 +58,8 @@ class Board():
             4:[6,8],
             5:[7]
         }
+    def getPosition(self):
+        return self.board
     def setStartingPosition(self):
         self.board=[self.BLACK,self.BLACK,self.BLACK,
                     self.BLANK,self.BLANK,self.BLANK,
@@ -73,10 +93,20 @@ class Board():
             else:
                 self.turn=self.WHITE
     def isTerminal(self):
-        if not self.availableMoves:
-            if self.turn==self.WHITE:
+        # if not self.availableMoves:
+        #     if self.turn==self.WHITE:
+        #         return (True,self.BLACK)
+        #     elif self.turn==self.BLACK:
+        #         return (True,self.WHITE)
+        availableMoves=[]
+        currentTurn=self.turn
+        for i,v in enumerate(self.board):
+            if v==currentTurn:
+                availableMoves.append(self.generateMoves(i))
+        if not availableMoves:
+            if currentTurn==self.WHITE:
                 return (True,self.BLACK)
-            elif self.turn==self.BLACK:
+            else:
                 return (True,self.WHITE)
         if self.WHITE in self.board[:2]:
             return (True,self.WHITE)
