@@ -101,3 +101,5 @@ class Board():
         elif self.turn==self.BLACK:
             for i in range(3):
                 networkVector.append(1)
+    def getNetworkOutputIndex(self,move):
+        return self.outputIndex[str(move)]
