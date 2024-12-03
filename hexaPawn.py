@@ -83,3 +83,21 @@ class Board():
         elif self.BLACK in self.board[6:8]:
             return (True,self.BLACK)
         return (False,None)
+    def toNetworkInput(self):
+        networkVector=[]
+        for i in self.board:
+            if self.board[i]==self.WHITE:
+                networkVector.append(1)
+            else:
+                networkVector.append(0)
+        for i in self.board:
+            if self.board[i]==self.BLACK:
+                networkVector.append(1)
+            else:
+                networkVector.append(0)
+        if self.turn==self.WHITE:
+            for i in range(3):
+                networkVector.append(0)
+        elif self.turn==self.BLACK:
+            for i in range(3):
+                networkVector.append(1)
