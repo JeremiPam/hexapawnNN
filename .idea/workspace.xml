@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="implemented main file">
-      <change afterPath="$PROJECT_DIR$/neuralNetwork.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="changed generateMoves() function from 1 parameter to 0 parameters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hexaPawn.py" beforeDir="false" afterPath="$PROJECT_DIR$/hexaPawn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -150,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733238720934</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="changed generateMoves() function from 1 parameter to 0 parameters">
+      <option name="closed" value="true" />
+      <created>1734082550252</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734082550252</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,6 +176,7 @@
     <MESSAGE value="implemented function toNetworkInput to convert state of game into network input" />
     <MESSAGE value="implemented getter for network output index" />
     <MESSAGE value="implemented main file" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented main file" />
+    <MESSAGE value="changed generateMoves() function from 1 parameter to 0 parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed generateMoves() function from 1 parameter to 0 parameters" />
   </component>
 </project>
