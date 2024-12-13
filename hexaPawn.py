@@ -64,53 +64,70 @@ class Board():
         self.board=[self.BLACK,self.BLACK,self.BLACK,
                     self.BLANK,self.BLANK,self.BLANK,
                     self.WHITE,self.WHITE,self.WHITE]
-    def generateMoves(self,currentPosition):
+    def generateMoves(self):
         moves=[]
-        if not self.availableMoves:
-            if self.turn==self.WHITE:
-                if self.board[currentPosition-3]==self.BLANK:
-                    moves.append(currentPosition-3)
-                for capture in self.whiteCaptures[currentPosition]:
+        currentPositions=[index for index,e in enumerate(self.board) if e==self.turn]
+        # for p in self.board:
+        #     if p==self.turn:
+        #         currentPositions.append(self.board.index(p))
+        for p in currentPositions:
+            if self.turn == self.WHITE:
+                if self.board[p-3]==self.BLANK:
+                    moves.append([p,p-3])
+                for capture in self.whiteCaptures[p]:
                     if self.board[capture]==self.BLACK:
-                        moves.append(capture)
+                        moves.append([p,capture])
             if self.turn==self.BLACK:
-                if self.board[currentPosition+3]==self.BLANK:
-                    moves.append(currentPosition+3)
-                for capture in self.blackCaptures[currentPosition]:
+                if self.board[p+3]==self.BLANK:
+                    moves.append([p,p+3])
+                for capture in self.blackCaptures[p]:
                     if self.board[capture]==self.WHITE:
-                        moves.append(capture)
+                        moves.append([p,capture])
+        # if not self.availableMoves:
+        #     if self.turn==self.WHITE:
+        #         if self.board[currentPosition-3]==self.BLANK:
+        #             moves.append(currentPosition-3)
+        #         for capture in self.whiteCaptures[currentPosition]:
+        #             if self.board[capture]==self.BLACK:
+        #                 moves.append(capture)
+        #     if self.turn==self.BLACK:
+        #         if self.board[currentPosition+3]==self.BLANK:
+        #             moves.append(currentPosition+3)
+        #         for capture in self.blackCaptures[currentPosition]:
+        #             if self.board[capture]==self.WHITE:
+        #                 moves.append(capture)
         self.availableMoves=moves
         return moves
     def applyMove(self,move):
         currentPosition=move[0]
         nextPosition=move[1]
-        if nextPosition in self.generateMoves(currentPosition):
-            self.availableMoves=[]
-            self.board[currentPosition]=self.BLANK
-            self.board[nextPosition]=self.turn
-            if self.turn==self.WHITE:
-                self.turn=self.BLACK
-            else:
-                self.turn=self.WHITE
+        if self.board[currentPosition]==self.BLANK:
+            raise Exception('wrong move passed to applymove function')
+
+
+        self.board[currentPosition]=self.BLANK
+        self.board[nextPosition]=self.turn
+        if self.turn==self.WHITE:
+            self.turn=self.BLACK
+        else:
+            self.turn=self.WHITE
     def isTerminal(self):
         # if not self.availableMoves:
         #     if self.turn==self.WHITE:
         #         return (True,self.BLACK)
         #     elif self.turn==self.BLACK:
         #         return (True,self.WHITE)
-        availableMoves=[]
+        availableMoves=self.generateMoves()
         currentTurn=self.turn
-        for i,v in enumerate(self.board):
-            if v==currentTurn:
-                availableMoves.append(self.generateMoves(i))
+
         if not availableMoves:
             if currentTurn==self.WHITE:
                 return (True,self.BLACK)
             else:
                 return (True,self.WHITE)
-        if self.WHITE in self.board[:2]:
+        if self.WHITE in self.board[:3]:
             return (True,self.WHITE)
-        elif self.BLACK in self.board[6:8]:
+        if self.BLACK in self.board[6:9]:
             return (True,self.BLACK)
         return (False,None)
     def toNetworkInput(self):

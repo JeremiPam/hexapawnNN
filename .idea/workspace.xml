@@ -4,19 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="added hexapawn board with basic features">
-      <change afterPath="$PROJECT_DIR$/.idea/hexaPawnNueralNetwork.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexaPawn.py" beforeDir="false" />
+    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="implemented main file">
+      <change afterPath="$PROJECT_DIR$/neuralNetwork.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexaPawn.py" beforeDir="false" afterPath="$PROJECT_DIR$/hexaPawn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -25,34 +30,38 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "JeremiPam"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JeremiPam&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/JeremiPam/hexapawnNN.git",
-    "accountId": "b0e38e89-9928-43a0-a9f4-a8f25d088525"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JeremiPam/hexapawnNN.git&quot;,
+    &quot;accountId&quot;: &quot;b0e38e89-9928-43a0-a9f4-a8f25d088525&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2pWGQPlo4NG7gyKA7MwKYPcnAmF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "92e7bf44"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.hexaPawn.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -109,7 +118,39 @@
       <option name="project" value="LOCAL" />
       <updated>1732890386525</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="implemented function isTerminal to check if state of game is terminal">
+      <option name="closed" value="true" />
+      <created>1733220274940</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733220274940</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implemented function toNetworkInput to convert state of game into network input">
+      <option name="closed" value="true" />
+      <created>1733221945044</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733221945044</updated>
+    </task>
+    <task id="LOCAL-00008" summary="implemented getter for network output index">
+      <option name="closed" value="true" />
+      <created>1733223396678</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733223396678</updated>
+    </task>
+    <task id="LOCAL-00009" summary="implemented main file">
+      <option name="closed" value="true" />
+      <created>1733238720934</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733238720934</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +166,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added hexapawn board with basic features" />
-    <option name="LAST_COMMIT_MESSAGE" value="added hexapawn board with basic features" />
+    <MESSAGE value="implemented function isTerminal to check if state of game is terminal" />
+    <MESSAGE value="implemented function toNetworkInput to convert state of game into network input" />
+    <MESSAGE value="implemented getter for network output index" />
+    <MESSAGE value="implemented main file" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented main file" />
   </component>
 </project>
