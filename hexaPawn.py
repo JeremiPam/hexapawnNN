@@ -1,7 +1,7 @@
 class Board():
     BLANK=0
     WHITE=1
-    BLACK=2
+    BLACK=-1
     def __init__(self):
         self.turn=self.WHITE
         self.outputIndex={}
@@ -67,9 +67,6 @@ class Board():
     def generateMoves(self):
         moves=[]
         currentPositions=[index for index,e in enumerate(self.board) if e==self.turn]
-        # for p in self.board:
-        #     if p==self.turn:
-        #         currentPositions.append(self.board.index(p))
         for p in currentPositions:
             if self.turn == self.WHITE:
                 if self.board[p-3]==self.BLANK:
@@ -83,26 +80,16 @@ class Board():
                 for capture in self.blackCaptures[p]:
                     if self.board[capture]==self.WHITE:
                         moves.append([p,capture])
-        # if not self.availableMoves:
-        #     if self.turn==self.WHITE:
-        #         if self.board[currentPosition-3]==self.BLANK:
-        #             moves.append(currentPosition-3)
-        #         for capture in self.whiteCaptures[currentPosition]:
-        #             if self.board[capture]==self.BLACK:
-        #                 moves.append(capture)
-        #     if self.turn==self.BLACK:
-        #         if self.board[currentPosition+3]==self.BLANK:
-        #             moves.append(currentPosition+3)
-        #         for capture in self.blackCaptures[currentPosition]:
-        #             if self.board[capture]==self.WHITE:
-        #                 moves.append(capture)
         self.availableMoves=moves
         return moves
     def applyMove(self,move):
         currentPosition=move[0]
         nextPosition=move[1]
-        if self.board[currentPosition]==self.BLANK:
-            raise Exception('wrong move passed to applymove function')
+        tmp=[]
+        for e in self.generateMoves():
+            tmp.append(e[1])
+        if self.board[currentPosition]==self.BLANK or self.board[currentPosition]!=self.turn or nextPosition not in tmp:
+            raise Exception('wrong move passed!')
 
 
         self.board[currentPosition]=self.BLANK
@@ -112,11 +99,7 @@ class Board():
         else:
             self.turn=self.WHITE
     def isTerminal(self):
-        # if not self.availableMoves:
-        #     if self.turn==self.WHITE:
-        #         return (True,self.BLACK)
-        #     elif self.turn==self.BLACK:
-        #         return (True,self.WHITE)
+
         availableMoves=self.generateMoves()
         currentTurn=self.turn
 
@@ -129,7 +112,7 @@ class Board():
             return (True,self.WHITE)
         if self.BLACK in self.board[6:9]:
             return (True,self.BLACK)
-        return (False,None)
+        return (False,self.BLANK)
     def toNetworkInput(self):
         networkVector=[]
         for i in self.board:
