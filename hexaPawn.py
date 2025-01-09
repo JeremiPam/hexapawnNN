@@ -116,12 +116,12 @@ class Board():
     def toNetworkInput(self):
         networkVector=[]
         for i in self.board:
-            if self.board[i]==self.WHITE:
+            if i==self.WHITE:
                 networkVector.append(1)
             else:
                 networkVector.append(0)
         for i in self.board:
-            if self.board[i]==self.BLACK:
+            if i==self.BLACK:
                 networkVector.append(1)
             else:
                 networkVector.append(0)
@@ -131,5 +131,6 @@ class Board():
         elif self.turn==self.BLACK:
             for i in range(3):
                 networkVector.append(1)
+        return networkVector
     def getNetworkOutputIndex(self,move):
         return self.outputIndex[str(move)]
