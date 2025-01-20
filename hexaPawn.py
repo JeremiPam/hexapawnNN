@@ -133,4 +133,4 @@ class Board():
                 networkVector.append(1)
         return networkVector
     def getNetworkOutputIndex(self,move):
-        return self.outputIndex[str(move)]
+        return self.outputIndex[str(move).replace(' ','')]
