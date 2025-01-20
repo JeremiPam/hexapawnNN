@@ -1,10 +1,11 @@
+from bidict import bidict
 class Board():
     BLANK=0
     WHITE=1
     BLACK=-1
     def __init__(self):
         self.turn=self.WHITE
-        self.outputIndex={}
+        self.outputIndex=bidict({})
         self.board=[self.BLANK,self.BLANK,self.BLANK,
                     self.BLANK,self.BLANK,self.BLANK,
                     self.BLANK,self.BLANK,self.BLANK]
@@ -134,3 +135,7 @@ class Board():
         return networkVector
     def getNetworkOutputIndex(self,move):
         return self.outputIndex[str(move).replace(' ','')]
+    def getMoveByOutputIndex(self,index):
+        str=self.outputIndex.inv[index]
+        ints=[int(str[1]),int(str[3])]
+        return tuple(ints)
