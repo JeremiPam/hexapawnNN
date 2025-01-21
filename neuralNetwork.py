@@ -19,7 +19,7 @@ def get_training_data(board,positions,moves,winners):
         moves_list = [0] * 28
         moves_list[board.getNetworkOutputIndex(tuple(move))] = 1
         moves.append(moves_list)
-        winners.append(mini_max(board, move, 0, 5))
+        winners.append(mini_max(board, move, 0, 10))
         temp=copy.deepcopy(board)
         temp.applyMove(move)
         get_training_data(temp,positions,moves,winners)
@@ -31,16 +31,17 @@ get_training_data(board,temp_pos,temp_moves,temp_win)
 positions=np.array(temp_pos,ndmin=2)
 moves=np.array(temp_moves,ndmin=2)
 winners=np.array(temp_win,ndmin=2).T
-
 inp=Input(shape=(21,))
 l1=Dense(128,activation='relu')(inp)
 l2=Dense(128,activation='relu')(l1)
 l3=Dense(128,activation='relu')(l2)
+l4=Dense(128,activation='relu')(l3)
+l5=Dense(128,activation='relu')(l4)
 
-policyOut=Dense(28,name='policyHead',activation='softmax')(l3)
-valueOut=Dense(1,name='valueOut',activation='tanh')(l3)
-
+policyOut=Dense(28,name='policyHead',activation='softmax')(l5)
+valueOut=Dense(1,name='valueOut',activation='tanh')(l5)
 model=Model(inp,[policyOut,valueOut])
-model.compile(optimizer='SGD',loss={'valueOut':'mean_squared_error','policyHead':'categorical_crossentropy'})
+opt = keras.optimizers.Adam(learning_rate=0.01)
+model.compile(optimizer=opt,loss={'valueOut':'mean_squared_error','policyHead':'categorical_crossentropy'})
 model.fit(positions,[moves,winners],epochs=10,batch_size=32)
 model.save('hexapawn_model.keras')
