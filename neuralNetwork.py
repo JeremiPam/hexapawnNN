@@ -44,4 +44,7 @@ model=Model(inp,[policyOut,valueOut])
 opt = keras.optimizers.Adam(learning_rate=0.01)
 model.compile(optimizer=opt,loss={'valueOut':'mean_squared_error','policyHead':'categorical_crossentropy'})
 model.fit(positions,[moves,winners],epochs=10,batch_size=32)
+for layer in model.layers[-2:]:
+    layer.trainable=False
+model.compile(optimizer=opt,loss={'valueOut':'mean_squared_error','policyHead':'categorical_crossentropy'})
 model.save('hexapawn_model.keras')
