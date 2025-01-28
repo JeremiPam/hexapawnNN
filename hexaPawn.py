@@ -66,42 +66,42 @@ class Board():
                     self.BLANK,self.BLANK,self.BLANK,
                     self.WHITE,self.WHITE,self.WHITE]
         self.turn=self.WHITE
-    # def generateMoves(self):
-    #     moves=[]
-    #     currentPositions=[index for index,e in enumerate(self.board) if e==self.turn]
-    #     for p in currentPositions:
-    #         if self.turn == self.WHITE:
-    #             if self.board[p-3]==self.BLANK:
-    #                 moves.append([p,p-3])
-    #             for capture in self.whiteCaptures[p]:
-    #                 if self.board[capture]==self.BLACK:
-    #                     moves.append([p,capture])
-    #         if self.turn==self.BLACK:
-    #             if self.board[p+3]==self.BLANK:
-    #                 moves.append([p,p+3])
-    #             for capture in self.blackCaptures[p]:
-    #                 if self.board[capture]==self.WHITE:
-    #                     moves.append([p,capture])
-    #     self.availableMoves=moves
-    #     return moves
     def generateMoves(self):
         moves=[]
         currentPositions=[index for index,e in enumerate(self.board) if e==self.turn]
         for p in currentPositions:
             if self.turn == self.WHITE:
                 if self.board[p-3]==self.BLANK:
-                    moves.append(tuple([p,p-3]))
+                    moves.append([p,p-3])
                 for capture in self.whiteCaptures[p]:
                     if self.board[capture]==self.BLACK:
-                        moves.append(tuple([p,capture]))
+                        moves.append([p,capture])
             if self.turn==self.BLACK:
                 if self.board[p+3]==self.BLANK:
-                    moves.append(tuple([p,p+3]))
+                    moves.append([p,p+3])
                 for capture in self.blackCaptures[p]:
                     if self.board[capture]==self.WHITE:
-                        moves.append(tuple([p,capture]))
+                        moves.append([p,capture])
         self.availableMoves=moves
         return moves
+    # def generateMoves(self):
+    #     moves=[]
+    #     currentPositions=[index for index,e in enumerate(self.board) if e==self.turn]
+    #     for p in currentPositions:
+    #         if self.turn == self.WHITE:
+    #             if self.board[p-3]==self.BLANK:
+    #                 moves.append(tuple([p,p-3]))
+    #             for capture in self.whiteCaptures[p]:
+    #                 if self.board[capture]==self.BLACK:
+    #                     moves.append(tuple([p,capture]))
+    #         if self.turn==self.BLACK:
+    #             if self.board[p+3]==self.BLANK:
+    #                 moves.append(tuple([p,p+3]))
+    #             for capture in self.blackCaptures[p]:
+    #                 if self.board[capture]==self.WHITE:
+    #                     moves.append(tuple([p,capture]))
+    #     self.availableMoves=moves
+    #     return moves
     def applyMove(self,move):
         currentPosition=move[0]
         nextPosition=move[1]

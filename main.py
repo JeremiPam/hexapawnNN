@@ -8,7 +8,7 @@ from miniMax import mini_max
 def max_value_move_index(model, board):
     moves=model.predict(np.array(board.toNetworkInput(), ndmin=2))[0][0]
     max=np.argmax(moves)
-    while not (tuple(board.getMoveByOutputIndex(max)) in board.generateMoves()):
+    while not (list(board.getMoveByOutputIndex(max)) in board.generateMoves()):
         moves[max]=0
         max = np.argmax(moves)
     return max
@@ -62,6 +62,7 @@ while(game=='y'):
     board.setStartingPosition()
     play_game(board,data,model)
     if data.get('positions'):
+        print(np.array(data['positions']).shape(),np.array(data['moves']).shape(),np.array(data['winners']).shape())
         opt = keras.optimizers.Adam(learning_rate=0.05)
         model.compile(optimizer=opt, loss={'valueOut': 'mean_squared_error', 'policyHead': 'categorical_crossentropy'})
         model.fit(np.array(data['positions']),[np.array(data['moves']),np.array(data['winners'])],epochs=3,batch_size=32)
