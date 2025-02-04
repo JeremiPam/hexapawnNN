@@ -3,10 +3,13 @@ import keras
 import hexaPawn
 import numpy as np
 from miniMax import mini_max
-
+from typing import Union
+from fastapi import FastAPI
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 def max_value_move_index(model, board):
-    moves=model.predict(np.array(board.toNetworkInput(), ndmin=2))[0][0]
+    moves=model.predict(np.array(board.toNetworkInput(), ndmin=2,dtype=np.float32))[0][0]
     max=np.argmax(moves)
     while not (list(board.getMoveByOutputIndex(max)) in board.generateMoves()):
         moves[max]=0
@@ -34,6 +37,7 @@ def play_game(board,data,model):
         if board.isTerminal()[0]:
             print(np.array(board.getPosition()).reshape(3, 3),board.isTerminal()[1], ' wins!')
             break
+
         computer_move=board.getMoveByOutputIndex(max_value_move_index(model, board))
         print(np.array(board.getPosition()).reshape(3, 3))
         if mini_max(board,computer_move,0,10) != computer_turn:
@@ -43,29 +47,34 @@ def play_game(board,data,model):
                     best_move=move
                     break
             update_data(data['positions'], data['winners'], data['moves'], board, best_move)
-            print(best_move)
+            print('better move:',best_move)
 
         board.applyMove(computer_move)
         if board.isTerminal()[0]:
             print(np.array(board.getPosition()).reshape(3, 3),board.isTerminal()[1], ' wins!')
             break
 
-model=load_model('hexapawn_model.keras')
-board=hexaPawn.Board()
-data={'positions':[],
-      'moves':[],
-      'winners':[]}
-game='y'
-board.setStartingPosition()
-while(game=='y'):
-    game=input('press y to play')
-    board.setStartingPosition()
-    play_game(board,data,model)
-    if data.get('positions'):
-        print(np.array(data['positions']).shape(),np.array(data['moves']).shape(),np.array(data['winners']).shape())
-        opt = keras.optimizers.Adam(learning_rate=0.05)
-        model.compile(optimizer=opt, loss={'valueOut': 'mean_squared_error', 'policyHead': 'categorical_crossentropy'})
-        model.fit(np.array(data['positions']),[np.array(data['moves']),np.array(data['winners'])],epochs=3,batch_size=32)
-    for key in data:
-        data[key]=[]
+# model=load_model('hexapawn_model.keras')
+# data={'positions':[],
+#       'moves':[],
+#       'winners':[]}
+# game='y'
+# board=hexaPawn.Board()
+# board.setStartingPosition()
+# while(game=='y'):
+#     game=input('press y to play')
+#     board.setStartingPosition()
+#     play_game(board,data,model)
+#     if data.get('positions'):
+#         opt = keras.optimizers.Adam(learning_rate=0.05)
+#         model.compile(optimizer=opt, loss={'valueOut': 'mean_squared_error', 'policyHead': 'categorical_crossentropy'})
+#         model.fit(np.array(data['positions'],dtype=np.float32),[np.array(data['moves'],dtype=np.float32),np.array(data['winners'],dtype=np.float32)],epochs=3,batch_size=32)
+#     for key in data:
+#         data[key].clear()
 
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}

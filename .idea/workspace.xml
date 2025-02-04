@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="changed generateMoves() function from 1 parameter to 0 parameters">
+    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="fixed bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexaPawn.py" beforeDir="false" afterPath="$PROJECT_DIR$/hexaPawn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
