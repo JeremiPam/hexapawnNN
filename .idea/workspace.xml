@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="fixed bugs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="b2b952d1-4bc1-4ee4-89e0-58f762ed5b07" name="Changes" comment="added frontend" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -155,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734082550252</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added frontend">
+      <option name="closed" value="true" />
+      <created>1738697185524</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738697185524</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +181,7 @@
     <MESSAGE value="implemented getter for network output index" />
     <MESSAGE value="implemented main file" />
     <MESSAGE value="changed generateMoves() function from 1 parameter to 0 parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed generateMoves() function from 1 parameter to 0 parameters" />
+    <MESSAGE value="added frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="added frontend" />
   </component>
 </project>

@@ -1,4 +1,5 @@
 from keras.models import load_model
+from fastapi.middleware.cors import CORSMiddleware
 import keras
 import hexaPawn
 import numpy as np
@@ -59,8 +60,8 @@ def play_game(board,data,model):
 #       'moves':[],
 #       'winners':[]}
 # game='y'
-# board=hexaPawn.Board()
-# board.setStartingPosition()
+board=hexaPawn.Board()
+board.setStartingPosition()
 # while(game=='y'):
 #     game=input('press y to play')
 #     board.setStartingPosition()
@@ -74,7 +75,16 @@ def play_game(board,data,model):
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
+)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello World",
+            'board':board.getPosition(),
+            'moves':board.generateMoves()}

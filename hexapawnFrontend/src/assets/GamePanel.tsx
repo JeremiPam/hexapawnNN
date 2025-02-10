@@ -1,32 +1,82 @@
-import React from 'react'
-import { Grid, GridItem } from "@chakra-ui/react"
-import { Box } from '@chakra-ui/react'
-import { Image } from '@chakra-ui/react'
+import React from 'react';
+import { Grid, GridItem } from "@chakra-ui/react";
+import { Box } from '@chakra-ui/react';
+import { Image } from '@chakra-ui/react';
+import { useState } from "react";
 
-const boxThemeWhite={
+const boxThemeWhite = {
   width: 100,
   height: 100,
   borderRadius: 0,
   bg: 'white',
-}
+};
 
-const boxThemeBlack={
+const boxThemeBlack = {
   ...boxThemeWhite,
   bg: '#808080',
+};
+
+const boxThemeYellow = {
+  ...boxThemeWhite,
+  bg: 'yellow',
+};
+
+const sourceWhite = 'src/images/whitepawn.png';
+const sourceBlack = 'src/images/blackpawn.png';
+
+interface GamePanelProps {
+  colors: number[];
+  moves: number[][];
+  onMove: (move: number[]) => void;
 }
 
-const sourceWhite='src/images/whitepawn.png'
-const sourceBlack='src/images/blackpawn.png'
+const GamePanel: React.FC<GamePanelProps> = ({ colors, moves, onMove }) => {
+  const [board, setBoard] = useState(colors);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+  const handleClick = (index: number) => {
+    if (selectedIndex === null) {
+      setSelectedIndex(index);
+    } else {
+      const isMoveValid = moves.some(move => move[0] === selectedIndex && move[1] === index);
 
-const GamePanel: React.FC<{ colors: number[] }> = ({ colors }) => {
+      if (isMoveValid) {
+        onMove([selectedIndex, index]);
+      }
+      setSelectedIndex(null);
+    }
+  };
+
+  const getPossibleMoves = (index: number) => {
+    const possibleMoves = moves.filter(move => move[0] === index).map(move => move[1]);
+    return possibleMoves;
+  };
+
+  const possibleMoves = selectedIndex !== null ? getPossibleMoves(selectedIndex) : [];
+
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap="6">
-          {colors.map((value,index)=>(
-            <GridItem><Box sx={index % 2 === 0 ? boxThemeWhite : boxThemeBlack}><Image src={value === 1 ? sourceWhite : (value === -1 ? sourceBlack : '')}/></Box></GridItem>
-          ))}
-    </Grid>
-  )
-}
+    <>
+      <div>moves: {JSON.stringify(moves)}</div>
+      <Grid templateColumns="repeat(3, 1fr)" gap="6">
+        {colors.map((value, index) => (
+          <GridItem key={index}>
+            <Box
+              sx={
+                possibleMoves.includes(index)
+                  ? boxThemeYellow
+                  : index % 2 === 0
+                  ? boxThemeWhite
+                  : boxThemeBlack
+              }
+              onClick={() => handleClick(index)}
+            >
+              <Image key={index} src={value === 1 ? sourceWhite : (value === -1 ? sourceBlack : '')} />
+            </Box>
+          </GridItem>
+        ))}
+      </Grid>
+    </>
+  );
+};
 
-export default GamePanel
+export default GamePanel;
