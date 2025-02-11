@@ -8,12 +8,12 @@ const boxThemeWhite = {
   width: 100,
   height: 100,
   borderRadius: 0,
-  bg: 'white',
+  bg: '#f0d9b5',
 };
 
 const boxThemeBlack = {
   ...boxThemeWhite,
-  bg: '#808080',
+  bg: '#946f51',
 };
 
 const boxThemeYellow = {
